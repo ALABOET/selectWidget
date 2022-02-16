@@ -1,13 +1,15 @@
 <template>
     <div class="main">
         <p id="title" @click="areOptionsVisible = !areOptionsVisible">{{selected}}</p>
+        <transition name="fade">
         <div class="options" v-if="areOptionsVisible">
             <p v-for="option in options"
                :key="option.value"
                @click="choose(option)">
-                {{option.value}}. {{option.name}}
+                {{option.text}}
             </p>
         </div>
+        </transition>
     </div>
 </template>
 
@@ -51,16 +53,23 @@
     }
 
     #title {
+        border-radius: 10px;
         border: 1px solid black;
     }
 
+    .options p:hover
+    {
+        background: orange;
+    }
     .options {
         border: 1px solid black;
+        border-radius: 10px;
         top: 30px;
         right: 0;
         width: 100%;
         position: absolute;
 
     }
+
 
 </style>

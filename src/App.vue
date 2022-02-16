@@ -1,45 +1,73 @@
 <template>
     <div id="app">
-        <vue-select :options="options"
-                    @select="optionSelect"
-        :selected="selected"></vue-select>
-
+        <div class="all" @mouseleave="flagOn = false">
+            <transition name="fade"><p v-if="!flagOn" class="flag" style="width:50px" @mouseenter="flagOn = true">ФЛАГ</p></transition>
+            <transition name="fade">
+            <vue-select class="vueSelect" v-if="flagOn" :options="languages"
+                        @select="optionSelect"
+                        :selected="selected"></vue-select>
+            </transition>
+        </div>
     </div>
 </template>
 
 <script>
 
     import vueSelect from "@/components/vueSelect";
-
     export default {
         name: 'App',
         data() {
             return {
-                selected: 'select',
-                options: [
+                flagOn: true,
+                selected: 'select it',
+                languages: [
                     {
-                        name: 'Espanish', value: 1
-                    }, {
-                        name: 'Rsuusiasd', value: 2
+
+                        text: 'English',
+                        value: 'en|en'
                     },
                     {
-                        name: 'asd', value: 3
+
+                        text: 'French',
+                        value: 'en|fr'
                     },
                     {
-                        name: 'Espanqwe', value: 4
+
+                        text: 'German',
+                        value: 'en|de'
                     },
                     {
-                        name: 'Ezxc', value: 5
+
+                        text: 'Italian',
+                        value: 'en|it'
                     },
                     {
-                        name: 'hghsdfg', value: 6
-                    }
-                ]
+
+                        text: 'Japanese',
+                        value: 'en|ja'
+                    },
+                    {
+
+                        text: 'Polish',
+                        value: 'en|pl'
+                    },
+                    {
+
+                        text: 'Portuguese',
+                        value: 'en|pt'
+                    },
+                    {
+
+                        text: 'Spanish',
+                        value: 'en|es'
+                    }]
             }
         },
         methods: {
             optionSelect(option) {
-                this.selected = option.name
+                ///сюда добавить перевод и прочую дичь
+                this.selected = option.text
+                this.flagOn = false
             }
         },
         components: {
@@ -49,12 +77,43 @@
 </script>
 
 <style>
-    #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
+    .all {
+        position: absolute;
+        width: 200px;
+        height: 70px;
+        right: 0px;
+    }
+
+    .vueSelect, .flag {
+        position: absolute;
+    }
+
+    .flag {
+        right: 0;
+        top: -13px;
+    }
+
+    .fade-enter {
+        opacity: 0;
+    }
+
+    .fade-enter-to {
+        opacity: 1;
+    }
+
+    .fade-enter-active {
+        transition: all .3s;
+    }
+
+    .fade-leave-from {
+        opacity: 1;
+    }
+
+    .fade-leave-to {
+        opacity: 0;
+    }
+
+    .fade-leave-active {
+transition: all .3s;
     }
 </style>
