@@ -2,7 +2,7 @@
     <div id="app">
         <div class="all" @mouseleave="flagOn = false">
             <transition name="fade"><p v-if="!flagOn" class="flag" style="width:50px" @mouseenter="flagOn = true">ФЛАГ</p></transition>
-            <transition name="fade">
+            <transition name="move">
             <vue-select class="vueSelect" v-if="flagOn" :options="languages"
                         @select="optionSelect"
                         :selected="selected"></vue-select>
@@ -14,11 +14,12 @@
 <script>
 
     import vueSelect from "@/components/vueSelect";
+
     export default {
         name: 'App',
         data() {
             return {
-                flagOn: true,
+                flagOn: false,
                 selected: 'select it',
                 languages: [
                     {
@@ -92,6 +93,59 @@
         right: 0;
         top: -13px;
     }
+    .move-enter
+    {
+        transform: translateX(100px);
+    }
+    .move-enter-to
+    {
+        right:0;
+    }
+    .move-enter-active
+    {
+        transition: all 1s;
+    }
+    .move-leave-from
+    {
+        right:0;
+    }
+    .move-leave-to
+    {
+        transform: translateX(99px);
+    }
+
+    .move-leave-active
+    {
+        transition: all 1s;
+    }
+
+
+    .move-down-enter
+    {
+        transform: translateY(-10px);
+    }
+    .move-down-enter-to
+    {
+        right:0;
+    }
+    .move-down-enter-active
+    {
+        transition: ease .2s;
+    }
+    .move-down-leave-from
+    {
+        right:0;
+    }
+    .move-down-leave-to
+    {
+        transform: translateY(100px);
+    }
+
+    .move-down-leave-active
+    {
+        transition: ease .2s;
+    }
+
 
     .fade-enter {
         opacity: 0;

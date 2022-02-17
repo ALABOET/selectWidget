@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <p id="title" @click="areOptionsVisible = !areOptionsVisible">{{selected}}</p>
-        <transition name="fade">
+        <transition name="move-down">
         <div class="options" v-if="areOptionsVisible">
             <p v-for="option in options"
                :key="option.value"
