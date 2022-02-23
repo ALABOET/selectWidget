@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        arra i did something
         <div class="all" @mouseleave="flagOn = false">
             <transition name="fade"><p v-if="!flagOn" class="flag" style="width:50px" @mouseenter="flagOn = true">ФЛАГ</p></transition>
             <transition name="move">
